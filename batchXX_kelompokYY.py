@@ -4,7 +4,8 @@
 # input ouput file
 
 import sys
-from GameEngine import CheckInput,calculate,calculate_2
+from GameEngine import calculate,calculate_2
+from Validation import CheckInput
 import time
 
 if __name__ == "__main__":
@@ -26,7 +27,7 @@ if __name__ == "__main__":
         if (CheckInput(masukan)!=0): # memastikan input valid
             keluaran = calculate_2(masukan) # menghitung
             print('keluaran',keluaran)
-            out_f.write(keluaran+'\n') # menulis ke file output
+            out_f.write('persamaan= '+keluaran[0]+'\nhasil='+str(keluaran[1])+' poin='+str(keluaran[2])+'\n') # menulis ke file output
             print('ditemukan solusi')
         else: # input tidak valid
             print("coba lagi")
