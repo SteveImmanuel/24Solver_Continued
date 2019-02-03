@@ -54,6 +54,7 @@ def calculate_2(masukan):
         # print('selected',equation)
         masukan.remove(maks[1])
     # print ('point',countPoint(equation,eval(equation)))
+    # yang direturn persamaan,total hasil evaluasi, dan point
     return (''.join(equation),maks[2],maks[3])
 
 def seleksi(kandidat,solusi_now):

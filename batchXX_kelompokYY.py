@@ -26,10 +26,10 @@ if __name__ == "__main__":
         masukan = list(map(int, masukan)) # casting ke int
         if (CheckInput(masukan)!=0): # memastikan input valid
             keluaran = calculate_2(masukan) # menghitung
-            print('keluaran',keluaran)
-            out_f.write('persamaan= '+keluaran[0]+'\nhasil='+str(keluaran[1])+' poin='+str(keluaran[2])+'\n') # menulis ke file output
-            print('ditemukan solusi')
+            print('Keluaran :',keluaran)
+            out_f.write('Persamaan : '+keluaran[0]+'\nHasil : '+str(keluaran[1])+' Poin : '+str(keluaran[2])+'\n') # menulis ke file output
+            print('Ditemukan solusi')
         else: # input tidak valid
-            print("coba lagi")
+            print("Coba lagi")
     else: # parameter input terlalu banyak
         print("parameter input salah")
