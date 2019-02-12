@@ -8,7 +8,7 @@ from GameEngine import calculate,countPoint
 FONT=('Segoe UI Semilight',15)
 root = Tk()
 root.title('24 Solver dengan Algoritma Greedy')
-# root.iconbitmap('data/gameicon.ico') #kalo di linux ini dicomment aja karna ga ngefek
+root.iconbitmap('data/gameicon.ico') #hanya berfungsi di platform windows
 root.resizable(False, False)
 topFrame1=Frame(root)
 topFrame2=Frame(root)
@@ -20,7 +20,7 @@ bg=canvas.create_image(0,0,image=bg_img,anchor='nw')
 allCard=selectedCard=selectedDeck=backCover=[]
 mode=1 #0 = mode manual,1=mode acak
 
-class Card:
+class Card:#class card untuk menyimpan gambar kartu dan melakukan animasi
     def __init__(self,imagename,xpos,ypos):
         self.imagefile=PhotoImage(file=imagename)
         self.image=canvas.create_image(xpos,ypos,image=self.imagefile,anchor='nw')
@@ -55,7 +55,7 @@ class Card:
         self.xpos=coord[0]
         self.ypos=coord[1]
 
-def initGame():
+def initGame():#inisialisasi GUI
     global allCard,selectedCard,selectedDeck,backCover
     allCard=['data/'+str(x)+str(y)+'.png' for x in range(1,14) for y in ['C','H','D','S']]
     selectedCard=['none']*4
@@ -65,7 +65,7 @@ def initGame():
     lbl_eval['text']=lbl_result['text']=lbl_point['text']=''
     lbl_indikator['text']='52'
 
-def drawCard():
+def drawCard():#animasi untuk melakukan pengambilan kartu
     global selectedCard
     global selectedDeck
     if selectedDeck[0]=='none':
@@ -88,9 +88,8 @@ def drawCard():
         btn_modemanual.state(["!disabled"])
         btn_moderandom.state(["!disabled"])
 
-def createCard():
+def createCard():#pembuatan instance kartu baru
     global allCard
-    # print(len(allCard),allCard)
     if len(allCard)>=1:
         tempSelected=choice(allCard)
         result=Card(tempSelected,225,165)
@@ -100,8 +99,9 @@ def createCard():
     return result
 
 
-def assignCard(): 
-#card0 diambil dari backcover sedangkan lainnya assign card baru, jadi setiap assignCard() assign 1 card buat backCover dan 3 buat card234
+def assignCard():#pemilihan kartu dari deck yang tersisa 
+#card0 diambil dari backcover sedangkan lainnya assign card baru, 
+# jadi setiap assignCard() assign 1 card untuk backCover dan 3 untuk card2,3,4
     global selectedDeck
     global allCard
     global backCover
@@ -119,7 +119,7 @@ def assignCard():
         else:
             selectedDeck[i]=createCard()
     
-def reshuffle():  
+def reshuffle():#animasi untuk pengocokan kartu dek  
     global selectedCard
     btn_draw.state(["disabled"])
     btn_reshuffle.state(["disabled"])
@@ -145,7 +145,7 @@ def reshuffle():
     btn_modemanual.state(["!disabled"])
     btn_moderandom.state(["!disabled"])
 
-def solve():
+def solve():#untuk memanggil backend dan mendapatkan solusi
     valid=False
     if mode==1:
         if selectedCard[0]=='none':
@@ -175,7 +175,7 @@ def solve():
         lbl_eval['text']=str(round(result[1],3))
         lbl_point['text']=str(round(countPoint(result[0],result[1],1),3))
 
-def modeManual():
+def modeManual():#GUI bentuk input 4 angka manual
     global mode
     mode=0
     #buang frame1
@@ -202,7 +202,7 @@ def modeManual():
     lbl_eval['text']=lbl_result['text']=lbl_point['text']=''
 
 
-def modeRandom():
+def modeRandom():#GUI bentuk 4 angka terambil secara acak
     global mode
     mode=1
     #munculkan frame1
