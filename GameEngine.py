@@ -4,42 +4,6 @@
 # menghitung solusi 24 solver dari input dengan algoritma greedy
 
 def calculate(masukan):
-    operator = '+-*/'
-    masukan.sort(reverse=True)
-    equation = [str(masukan[0])] # berubah
-    masukan.remove(masukan[0])
-    while masukan != []:
-        # first=True
-        # select_eq = '' # menyimpan persamaan dengan poin
-        daftar = list()
-        for op in operator: # coba untuk semua operator
-            for angka in masukan: # coba untuk semua angka
-                temp_eq = equation.copy()
-                temp_eq += op + str(angka)
-                daftar.append([temp_eq,angka])
-                # try: 
-                #     hasil = eval(temp_eq)
-                # except:
-                #     continue
-                # if first: # iterasi pertama
-                #     max_point = countPoint(temp_eq,hasil)
-                #     select_eq = temp_eq
-                #     selected = angka
-                #     first=False
-                # else:
-                #     temp_point = countPoint(temp_eq,hasil)
-                #     if (max_point<temp_point):
-                #         max_point = temp_point
-                #         select_eq = temp_eq
-                #         selected = angka
-        maks = greedy(daftar)
-        equation = maks[0]
-        masukan.remove(maks[1])
-    equation = ''.join(equation)
-    print ('point',countPoint(equation,eval(equation)))
-    return equation
-
-def calculate_2(masukan):
     '''
     fungsi mencari persamaan dengan point optimum untuk solusi 
     permasalahan game 24 dari masukan yang ada
@@ -51,9 +15,7 @@ def calculate_2(masukan):
     while masukan != []:
         maks = seleksi(masukan,equation)
         equation = maks[0]
-        # print('selected',equation)
         masukan.remove(maks[1])
-    # print ('point',countPoint(equation,eval(equation)))
     # yang direturn persamaan,total hasil evaluasi, dan point
     return (''.join(equation),maks[2],maks[3])
 
@@ -81,7 +43,7 @@ def seleksi(kandidat,solusi_now):
 
 def countPoint(exp,result):
     # menghitung point dari exp yang masuk dan result-nya
-    point=-1*abs(24-result)
+    point=-3.6*abs(24-result)
     for char in exp:
         if char=='+':
             point+=5
@@ -157,30 +119,3 @@ def greedy(daftar):
                     selected = angka
                     total = hasil
     return [select_eq,selected,total,max_point]
-
-def greedy_not_kurung(daftar):
-    '''
-    fungsi yang mengembalikan persamaan dari daftar yang
-    memiliki jumlah point terbesar tanpa menggunakan kurung
-    '''
-    first = True
-    for pasang in daftar:
-        exp = pasang[0]
-        angka = pasang[1]
-        equation = ''.join(exp)
-        try: 
-            hasil = eval(equation)
-        except:
-            continue
-        if first: # iterasi pertama
-            max_point = countPoint(exp,hasil)
-            select_eq = exp
-            selected = angka
-            first=False
-        else:
-            temp_point = countPoint(exp,hasil)
-            if (max_point<temp_point):
-                max_point = temp_point
-                select_eq = exp
-                selected = angka
-    return [select_eq,selected]

@@ -4,7 +4,7 @@
 # input ouput file
 
 import sys
-from GameEngine import calculate,calculate_2
+from GameEngine import calculate
 from Validation import CheckInput
 import time
 
@@ -25,9 +25,10 @@ if __name__ == "__main__":
         masukan = in_f.read().split()
         masukan = list(map(int, masukan)) # casting ke int
         if (CheckInput(masukan)!=0): # memastikan input valid
-            keluaran = calculate_2(masukan) # menghitung
+            keluaran = calculate(masukan) # menghitung
+            # yang direturn persamaan,total hasil evaluasi, dan point
             print('Keluaran :',keluaran)
-            out_f.write('Persamaan : '+keluaran[0]+'\nHasil : '+str(keluaran[1])+' Poin : '+str(keluaran[2])+'\n') # menulis ke file output
+            out_f.write(keluaran[0]) # menulis ke file output
             print('Ditemukan solusi')
         else: # input tidak valid
             print("Coba lagi")
