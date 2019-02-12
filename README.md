@@ -15,6 +15,7 @@ python3 GUI.py (untuk linux)
 
 ## Cara Bermain
 Apabila pengguna ingin bermain dengan angka acak, cukup tekan ambil kartu. Setelah itu, dapat menekan tombol hitung untuk menemukan jawaban. Untuk mengambil kartu lagi, dapat menekan kembali tombol ambil kartu. Apabila kartu sudah habis, dapat menekan tombol kocok ulang untuk mengembalikan semua kartu yang sudah dipakai ke dalam tumpukan kartu. Selain mode acak, ada juga mode manual dimana pengguna dapat menginput sendiri angka yang akan digunakan untuk melakukan permainan.
+Untuk lebih jelasnya, dapat diakses di [sini](https://www.youtube.com/watch?v=L7V122NIHG4&t=8s)
 
 ## Pengembang
 Kelompok 31 "Sin" Tugas Besar Strategi Algoritma IF2211 2018/2019
