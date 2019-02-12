@@ -41,9 +41,9 @@ def seleksi(kandidat,solusi_now):
             daftar.append((temp_eq,angka))
     return greedy(daftar)
 
-def countPoint(exp,result):
-    # menghitung point dari exp yang masuk dan result-nya
-    point=-3.6*abs(24-result)
+def countPoint(exp,result,multiplier):
+    # menghitung point dari exp yang masuk dan result-nya, multiplier untuk pengali selisih
+    point=-multiplier*abs(24-result)
     for char in exp:
         if char=='+':
             point+=5
@@ -106,13 +106,13 @@ def greedy(daftar):
             except:
                 continue
             if first: # iterasi pertama
-                max_point = countPoint(exp,hasil)
+                max_point = countPoint(exp,hasil,3.6)
                 select_eq = exp
                 selected = angka
                 total = hasil
                 first = False
             else:
-                temp_point = countPoint(exp,hasil)
+                temp_point = countPoint(exp,hasil,3.6)
                 if (max_point<temp_point):
                     max_point = temp_point
                     select_eq = exp

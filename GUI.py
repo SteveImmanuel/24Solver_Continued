@@ -1,14 +1,14 @@
 from tkinter import *
 from tkinter import ttk,messagebox
 from random import choice
-from GameEngine import calculate,calculate_2
+from GameEngine import calculate,countPoint
 
 
 #inisialisasi variabel global
 FONT=('Segoe UI Semilight',15)
 root = Tk()
 root.title('24 Solver dengan Algoritma Greedy')
-root.iconbitmap('data/gameicon.ico') #kalo di linux ini dicomment aja karna ga ngefek
+# root.iconbitmap('data/gameicon.ico') #kalo di linux ini dicomment aja karna ga ngefek
 root.resizable(False, False)
 topFrame1=Frame(root)
 topFrame2=Frame(root)
@@ -170,10 +170,10 @@ def solve():
             messagebox.showinfo('Input Salah','Input harus berupa angka dari 1 sampai 13!')
     
     if valid==True:
-        result=calculate_2(inputNumber)
+        result=calculate(inputNumber)
         lbl_result['text']=result[0]
         lbl_eval['text']=str(round(result[1],3))
-        lbl_point['text']=str(round(result[2],3))
+        lbl_point['text']=str(round(countPoint(result[0],result[1],1),3))
 
 def modeManual():
     global mode
